@@ -5,4 +5,16 @@
     values-round/strings.xml for round devices.
     -->
     <string name="celsius_init">CEL Token: Tap to refresh</string>
+
+    <string-array name="coins_supported">
+        <item>cel</item>
+        <item>btc</item>
+        <item>eth</item>
+    </string-array>
+
+    <string-array name="api_ticker">
+        <item>celsius-degree-token</item>
+        <item>bitcoin</item>
+        <item>ethereum</item>
+    </string-array>
 </resources>
