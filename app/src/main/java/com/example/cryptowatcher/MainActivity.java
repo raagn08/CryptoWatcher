@@ -1,71 +1,54 @@
 package com.example.cryptowatcher;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
-public class MainActivity extends WearableActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends FragmentActivity {
 
-    TextView txt;
-    Timer timer;
-    AsyncTask<Void, Void, ArrayList<JSONObject>> runningTask;
+    public static LongOperation runningTask;
 
     private final String API_URL = "https://api.coingecko.com/api/v3/coins/";
-    //private final String[] mCoinList = getResources().getStringArray(R.array.coins_supported);
     private String[] mtickerList = new ArrayList<String>().toArray(new String[0]);
-    private SwipeRefreshLayout pullToRefresh;
+
+    private ViewPager2 viewPager;
+
+    private FragmentStateAdapter pagerAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mtickerList = getResources().getStringArray(R.array.api_ticker);
-
         runningTask = new LongOperation();
         runningTask.execute();
 
-        pullToRefresh = findViewById(R.id.swiperefresh);
-        pullToRefresh.setOnRefreshListener(this);
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Cancel running task(s) to avoid memory leaks
-        if (runningTask != null)
-            runningTask.cancel(true);
+        ViewPager2 viewPager = findViewById(R.id.pager);
+
+        ScreenAdapter adapter = new ScreenAdapter(this);
+        viewPager.setAdapter(adapter);
     }
 
-    @Override
-    public void onRefresh() {
-        if (runningTask != null)
-            runningTask.cancel(true);
-        runningTask = new LongOperation();
-        runningTask.execute();
-    }
-
-    private final class LongOperation extends AsyncTask<Void, Void, ArrayList<JSONObject>> {
+    public class LongOperation extends AsyncTask<Void, Void, ArrayList<JSONObject>> {
         @Override
         protected ArrayList<JSONObject> doInBackground(Void... voids) {
             ArrayList<JSONObject> result = new ArrayList<JSONObject>();
@@ -106,16 +89,21 @@ public class MainActivity extends WearableActivity implements SwipeRefreshLayout
                 try {
                     price.setText("$" + formatter.format(result.getJSONObject("market_data").getJSONObject("current_price").getDouble("usd")));
                     if (result.getJSONObject("market_data").getInt("price_change_24h")>0)
-                        price.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.increase,0);
+                        price.setCompoundDrawablesWithIntrinsicBounds(R.drawable.increase, 0, 0,0);
                     else
-                        price.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.decrease,0);
+                        price.setCompoundDrawablesWithIntrinsicBounds(R.drawable.decrease, 0, 0,0);
                     high.setText("$" + formatter.format(result.getJSONObject("market_data").getJSONObject("high_24h").getDouble("usd")));
                     low.setText("$" + formatter.format(result.getJSONObject("market_data").getJSONObject("low_24h").getDouble("usd")));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            pullToRefresh.setRefreshing(false);
+            PriceFragment.swipeAction.setRefreshing(false);
+            selfRestart();
+        }
+
+        public void selfRestart() {
+            runningTask = new LongOperation();
         }
     }
 }

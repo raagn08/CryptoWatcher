@@ -5,6 +5,7 @@
     values-round/strings.xml for round devices.
     -->
     <string name="celsius_init">CEL Token: Tap to refresh</string>
+    <string name="default_price">-</string>
 
     <string-array name="coins_supported">
         <item>cel</item>

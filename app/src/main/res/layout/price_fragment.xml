@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swiperefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:padding="@dimen/box_inset_layout_padding"
+    tools:context=".MainActivity"
+    tools:deviceIds="wear">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="40dp"
+                android:paddingTop="40dp"
+                android:stretchColumns="2">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewCel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/logo_cel"
+                        android:text=" CEL"
+                        android:textAlignment="textEnd"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textViewPrice_cel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:drawableEnd="@drawable/increase"
+                        android:text="@string/default_price"
+                        android:textAlignment="textStart"
+                        android:textColor="#FFC107"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewHigh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="High"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textViewHighPrice_cel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="@string/default_price"
+                        android:textAlignment="textStart"
+                        android:textColor="#2BB201"
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewLow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Low"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textViewLowPrice_cel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="@string/default_price"
+                        android:textAlignment="textStart"
+                        android:textColor="#F5123F"
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewBTC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/logo_btc"
+                        android:text="BTC"
+                        android:textAlignment="textEnd"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textViewPrice_btc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:drawableEnd="@drawable/decrease"
+                        android:text="@string/default_price"
+                        android:textAlignment="textStart"
+                        android:textColor="#FFC107"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewBTCHigh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="High"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textViewHighPrice_btc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="@string/default_price"
+                        android:textAlignment="textStart"
+                        android:textColor="#2BB201"
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewBTCLow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Low"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textViewLowPrice_btc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="@string/default_price"
+                        android:textAlignment="textStart"
+                        android:textColor="#F5123F"
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewETH"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/logo_eth"
+                        android:text="ETH"
+                        android:textAlignment="textEnd"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textViewPrice_eth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:drawableEnd="@drawable/decrease"
+                        android:text="@string/default_price"
+                        android:textAlignment="textStart"
+                        android:textColor="#FFC107"
+                        android:textSize="16sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewETHHigh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="High"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textViewHighPrice_eth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="@string/default_price"
+                        android:textAlignment="textStart"
+                        android:textColor="#2BB201"
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewETHLow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Low"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textViewLowPrice_eth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="@string/default_price"
+                        android:textAlignment="textStart"
+                        android:textColor="#F5123F"
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+            </TableLayout>
+        </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
